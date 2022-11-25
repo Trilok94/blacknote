@@ -1,0 +1,91 @@
+import { createContext } from "react";  
+
+const noteContext = createContext()
+export default noteContext;
+
+
+
+
+import NoteContext from "./NoteContext";
+
+const NoteState = (props)=> {
+
+    // you can make variable here  
+    const obj1 = {
+        "name" : "obj1",
+        "type": "object1"
+    }
+    const variable = "i am variable"
+    const obj2 = {
+        "name" : "obj2",
+        "type": "object2",
+        "func_hello" : ()=>{
+            alert("hello")
+        }
+    }
+    const func_hello = ()=> {
+        alert('hello i am func_hello')
+    }
+    return (
+        // this is jsx , have to use {} for javascript 
+        <NoteContext.Provider value={{obj1 , obj2 , func_hello, variable}}> // whatever you want to export, you can give them here 
+            {props.children}
+        </NoteContext.Provider>
+    )
+}
+
+export default NoteState;
+
+
+
+
+
+
+
+
+// import the component to app.js
+// import NoteState from './context/notes/noteState';
+function App() {
+  return (
+    <>
+      <NoteState>
+        <Router>
+          <Navbar />
+          <Routes>
+            <Route exact path={'/'} element={<Home />} />
+            <Route exact path={'/about'} element={<About />} />
+          </Routes>
+
+        </Router>
+      </NoteState>
+    </>
+  );
+}
+
+
+
+
+
+
+
+// into the component
+import { useContext } from 'react';
+import NoteContext from '../context/notes/NoteContext';
+
+const About = () => {
+    const note = useContext(NoteContext)
+    return (
+        <>
+            <div className="container">
+                this is obj1.name : {note.obj1.name}<br/>
+                this is obj1.type : {note.obj1.type}<br/>
+                this is obj2.name : {note.obj2.name}<br/>
+                this is obj2.name : {note.obj2.type}<br/>
+                this is a variable : {note.variable}<br/>
+                this is a func_hello function : {note.func_hello()} this is not visible cause it is function<br/>
+            </div>
+        </>
+    )
+}
+
+export default About;
