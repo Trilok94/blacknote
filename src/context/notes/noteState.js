@@ -46,7 +46,7 @@ const NoteState = (props) => {
   const reftitle = useRef(null)
   const refdesc = useRef(null)
   const reftag = useRef(null)
-  const [ldplay, setLdplay] = useState(sessionStorage.getItem('token')? 'inline': 'none')
+  const [ldplay, setLdplay] = useState(sessionStorage.getItem('token') ? 'inline' : 'none')
 
 
 
@@ -56,7 +56,7 @@ const NoteState = (props) => {
 
 
 
-  const host = "http://localhost:5000/"
+  const host = process.env.REACT_APP_BACK_HOST
   const fetchalldata = async () => {
     const response = await fetch(`${host}api/notes/fetchAllNotes`, {
       method: 'GET', // *GET, POST, PUT, DELETE, etc.

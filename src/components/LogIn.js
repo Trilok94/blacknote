@@ -1,6 +1,6 @@
 import React from 'react'
-import { useRef, useContext, useEffect  } from 'react';
-import { useNavigate,Link, useLocation } from "react-router-dom";
+import { useRef, useContext, useEffect } from 'react';
+import { useNavigate, Link, useLocation } from "react-router-dom";
 import noteContext from '../context/notes/NoteContext'
 const LogIn = () => {
     const Context = useContext(noteContext);
@@ -19,7 +19,7 @@ const LogIn = () => {
             "email": lemail.current.value,
             "password": lpass.current.value
         }
-        const response = await fetch('http://localhost:5000/api/auth/login', {
+        const response = await fetch(`${process.env.REACT_APP_BACK_HOST}/api/auth/login`, {
             method: 'POST', // *GET, POST, PUT, DELETE, etc.
             headers: {
                 'Content-Type': 'application/json'
@@ -55,7 +55,7 @@ const LogIn = () => {
 
                 <button type="submit" className="btn btn-primary">Login</button>
             </form>
-            <div className="container d-flex justify-content-center"><Link className="text-center my-4 mx-auto" style={{marginTop: '10px'}} to="/signup"> Sign up for blacknote</Link></div>
+            <div className="container d-flex justify-content-center"><Link className="text-center my-4 mx-auto" style={{ marginTop: '10px' }} to="/signup"> Sign up for blacknote</Link></div>
         </div>
         </>
     )

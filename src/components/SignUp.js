@@ -9,7 +9,7 @@ const SignUp = () => {
   const Rpassword = useRef()
   const navigate = useNavigate()
   const Context = useContext(noteContext);
-  let {showAlert} = Context
+  let { showAlert } = Context
   const handleSubmit = async (event) => {
     event.preventDefault();
     const data = {
@@ -17,7 +17,7 @@ const SignUp = () => {
       "email": Remail.current.value,
       "password": Rpassword.current.value
     }
-    const response = await fetch('http://localhost:5000/api/auth/signup', {
+    const response = await fetch(`${process.env.REACT_APP_BACK_HOST}/api/auth/signup`, {
       method: 'POST', // *GET, POST, PUT, DELETE, etc.
       headers: {
         'Content-Type': 'application/json'
@@ -42,7 +42,7 @@ const SignUp = () => {
       <form onSubmit={handleSubmit}>
         <div className="mb-3">
           <label htmlFor="uname" className="form-label">Full Name</label>
-          <input type="text" className="form-control" id="uname" name='uname' ref={Rname}  />
+          <input type="text" className="form-control" id="uname" name='uname' ref={Rname} />
         </div>
         <div className="mb-3">
           <label htmlFor="email" className="form-label">Email address</label>
@@ -60,7 +60,7 @@ const SignUp = () => {
 
         <button type="submit" className="btn btn-primary">Signup</button>
       </form>
-      <div className="container d-flex justify-content-center"><Link className="text-center my-4 mx-auto" style={{marginTop: '10px'}} to="/login">Already have an account?</Link></div>
+      <div className="container d-flex justify-content-center"><Link className="text-center my-4 mx-auto" style={{ marginTop: '10px' }} to="/login">Already have an account?</Link></div>
     </div>
     </>
   )
